@@ -1,0 +1,100 @@
+<!--
+ * @Author: 悦者生存 1002783067@qq.com
+ * @Date: 2023-06-17 17:28:39
+ * @LastEditors: 悦者生存 1002783067@qq.com
+ * @LastEditTime: 2023-06-24 21:40:31
+ * @FilePath: /blog-code/canvas/findImageOverlap.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #canvas{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="768" height="1024"></canvas>
+  <canvas id="canvas1" width="768" height="1024"></canvas>
+</body>
+<script>
+const dealImageData = (imageData) => {
+  let data = imageData.data;
+  for(let i=0;i<data.length;i+=4){
+    // R 红色通道去反色
+    data[i] = data[i]^255;
+    // G 绿色通道去反色
+    data[i+1] = data[i+1]^255;
+    // B 绿色通道去反色
+    data[i+2] = data[i+2]^255;
+    // A 透明通道一般不取反色，因为你的图片有可能都是255，也就是不透明的，你取了反色，就成了全透明，什么都看不到了
+    // data[i+3] = data[i+3]^255;
+  }
+  return imageData;
+}
+
+const image1 = './img/3.png';
+const image2 = './img/4.png';
+const canvas = document.querySelector('#canvas');
+const canvas1 = document.querySelector('#canvas1');
+// 如果想使用canvas的api，那么必须获取context对象，相当于一个接口
+const ctx = canvas.getContext("2d");
+const ctx1 = canvas1.getContext("2d");
+ctx1.willReadFrequently = true;
+// 等价于document.createElement("img").
+const imageObj = new Image();
+const imageObj1 = new Image();
+
+
+const getOverlapY = () => {
+  return new Promise((resolve)=>{
+    // 图片加载好以后开始进行操作
+    imageObj.onload = function(){
+      ctx.drawImage(imageObj, 0, 0);
+      const imageData = ctx.getImageData(0, 0, imageObj.width, 2);
+    
+      const data = imageData.data;
+      
+      imageObj1.onload = function(){
+        ctx1.drawImage(imageObj1, 0, 0);
+        
+        for(let i=0; i<imageObj1.height; i++){
+          const imageData1 = ctx1.getImageData(0, i, imageObj1.width, 2);
+          const data1 = imageData1.data;
+          let success = true;
+          for(let z=0;z<data1.length;z++){
+              if(data1[z]!==data[z]){
+                success = false;
+              }
+          }
+          if(success){
+            resolve(i);
+            return;
+          }
+        }
+      }
+    }
+
+    imageObj.src = image1;
+    imageObj1.src = image2;
+  })
+}
+
+const clipImage = async() => {
+  const y = await getOverlapY();
+  // 绘制一个矩形路径作为裁剪区域
+  
+  ctx1.drawImage(imageObj1,0,y,imageObj1.width, imageObj1.height,0,0,imageObj1.width, imageObj1.height-y)
+
+}
+
+clipImage();
+
+
+</script>
+</html>
