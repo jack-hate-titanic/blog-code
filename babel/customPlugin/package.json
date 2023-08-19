@@ -1,0 +1,20 @@
+{
+  "name": "customplugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "devDependencies": {
+    "@babel/cli": "^7.22.9",
+    "@babel/core": "^7.22.9"
+  },
+  "dependencies": {
+    "@babel/template": "^7.22.5"
+  }
+}
