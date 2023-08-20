@@ -1,0 +1,47 @@
+<!--
+ * @Author: 悦者生存 1002783067@qq.com
+ * @Date: 2023-08-20 17:27:57
+ * @LastEditors: 悦者生存 1002783067@qq.com
+ * @LastEditTime: 2023-08-20 18:23:54
+ * @FilePath: /koa-websocket/views/index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  1111
+</body>
+<script src="../javascripts/socket.js"></script>
+<script>
+   // 初始化
+   const ws = new Socket({
+        url: 'ws://localhost:3000',// 阮一峰老师教程链接
+        name: '',			// name
+        isHeart:true,			// 是否心跳
+        isReconnection:false,		// 是否断开重连
+        received: function(data){
+        	// 监听服务器返回信息
+            console.log("received",data)
+        }
+    });
+    // 建立连接
+    let data = {
+        type: 'init'
+    }
+    ws.connect(data);
+    
+    // // 发送消息
+    // let sendData = {
+    //    type: 'sendMsg'
+    // }
+    // ws.sendMsg(sendData)
+    
+    // // 手动关闭
+    // ws.close()
+</script>
+</html> 

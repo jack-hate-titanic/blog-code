@@ -1,0 +1,31 @@
+<!--
+ * @Author: 悦者生存 1002783067@qq.com
+ * @Date: 2023-08-19 19:42:51
+ * @LastEditors: 悦者生存 1002783067@qq.com
+ * @LastEditTime: 2023-08-19 19:49:28
+ * @FilePath: /websocket/index.html
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>welcome to websocket</div>
+</body>
+<script>
+  const ws = new WebSocket('ws://localhost:5000');
+  // 链接成功
+  ws.onopen = () => {
+    console.log('链接成功');
+    ws.send('发送第一条信息');
+  }
+  // 接受数据
+  ws.onmessage = () => {
+    ws.send('发送第二条数据');
+  }
+</script>
+</html>
