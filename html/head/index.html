@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2023-05-12 20:18:53
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2023-07-24 23:11:18
+ * @LastEditTime: 2023-12-20 22:58:48
  * @FilePath: /blog-code/html/head/index.html
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -15,25 +15,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>title</title>
 </head>
+<style>
+  .father {
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    /* align-content: flex-start; */
+  }
+  .child {
+    width: 110px;
+    /* height: 110px; */
+    background-color: red;
+    margin-right: 10px;
+
+  }
+</style>
 <body>
-  <table border="1"  style="width: 600px">
-    <thead>股票复盘</thead>
-    <tbody>
-      <tr>
-        <td>股票名</td>
-        <td>7日</td>
-        <td>13日</td>
-        <td>20日</td>
-        <td>买卖建议</td>
-      </tr>
-      <tr>
-        <td>TCL</td>
-        <td>是</td>
-        <td>是</td>
-        <td>是</td>
-        <td>卖出全部</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="father">
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+  </div>
 </body>
 </html>
