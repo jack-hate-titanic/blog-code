@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2024-05-20 23:10:15
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2024-05-20 23:10:24
+ * @LastEditTime: 2024-05-23 20:58:32
  * @FilePath: /blog-code/react/buildOwnReact/webpack.config.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,7 +22,12 @@ module.exports = {
             {
             // 对以js结尾的文件进行es6转es5
                 test: /\.js$/,
-                loader: "babel-loader",
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets:["@babel/preset-env", "@babel/preset-react"]
+                    }
+                },
                 exclude: /node_modules/,
             },
         ],

@@ -2,7 +2,7 @@
  * @Author: 悦者生存 1002783067@qq.com
  * @Date: 2024-05-18 20:06:43
  * @LastEditors: 悦者生存 1002783067@qq.com
- * @LastEditTime: 2024-05-20 23:12:52
+ * @LastEditTime: 2024-05-23 21:44:33
  * @FilePath: /blog-code/react/buildOwnReact/index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -57,7 +57,7 @@ const Didact = {
 /** @jsx Didact.createElement */
 const element = (
   <div id="foo">
-     <a>bar</a>
+     <a>bar1111</a>
      <b/>
   </div>
   )
